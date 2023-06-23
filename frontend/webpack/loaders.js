@@ -1,6 +1,5 @@
 'use strict';
 
-const Autoprefixer = require('autoprefixer');
 const define = require('./define');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -17,7 +16,7 @@ module.exports = {
       }
     },
     {
-      test: /\.(css|less)$/,
+      test: /\.(css)$/,
       use: [
         {
           loader: MiniCssExtractPlugin.loader,
@@ -28,35 +27,12 @@ module.exports = {
         {
           loader: 'css-loader',
           options: {
-            modules: {
-              localIdentName: define.development ? '[path][name]__[local]' : '[hash:base64]'
-            },
             sourceMap: define.development
           }
         },
         {
           loader: 'postcss-loader',
           options: {
-            postcssOptions: {
-              plugins: [
-                new Autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 3 versions',
-                    'ie > 8'
-                  ]
-                })
-              ]
-            },
-            sourceMap: define.development
-          }
-        },
-        {
-          loader: 'less-loader',
-          options: {
-            lessOptions: {
-              javascriptEnabled: true
-            },
             sourceMap: define.development
           }
         }

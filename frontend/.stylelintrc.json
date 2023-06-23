@@ -4,8 +4,7 @@
   ],
   "overrides": [
     {
-      "files": ["**/*.less"],
-      "customSyntax": "postcss-less"
+      "files": ["**/*.css"]
     }
   ],
   "plugins": [
