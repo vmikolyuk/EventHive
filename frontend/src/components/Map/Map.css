@@ -1,0 +1,11 @@
+.Map {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.MapWrapper {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
