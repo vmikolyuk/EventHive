@@ -16,6 +16,16 @@ public class Location {
     @Column(nullable = false)
     private String title;
 
+    @Column
+    private Float latitude;
+
+    @Column
+    private Float longitude;
+
+    @Column
+    private Float address;
+
+
     public Long getId() {
         return id;
     }
@@ -31,5 +41,5 @@ public class Location {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
 }
