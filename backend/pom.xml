@@ -8,6 +8,7 @@
         <version>3.1.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.eventHive</groupId>
     <artifactId>EventHive</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -15,6 +16,8 @@
     <description>System for organizing events and recruiting people</description>
     <properties>
         <java.version>17</java.version>
+        <node.version>v18.6.0</node.version>
+        <npm.version>8.13.2</npm.version>
     </properties>
     <dependencies>
         <dependency>
@@ -55,4 +58,107 @@
         </plugins>
     </build>
 
+
+    <profiles>
+        <profile>
+            <id>front</id>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.12.0</version>
+                        <configuration>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
+                            <workingDirectory>../frontend</workingDirectory>
+                            <nodeDownloadRoot>http://sd-npm.naumen.ru/repository/raw-nodejs-proxy/</nodeDownloadRoot>
+                            <npmDownloadRoot>http://sd-npm.naumen.ru/repository/npm-registry/npm/-/</npmDownloadRoot>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>install-node-and-npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <phase>initialize</phase>
+                            </execution>
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <!-- optional: default phase is "generate-resources" -->
+                                <phase>generate-resources</phase>
+                                <!-- Optional configuration which provides for running any npm command -->
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>npm run dev</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <environmentVariables>
+                                        <NODE_OPTIONS>--max-old-space-size=1152</NODE_OPTIONS>
+                                    </environmentVariables>
+                                    <arguments>run build</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-frontend</id>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>
+                                        ${project.build.outputDirectory}/static
+                                    </outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <filtering>false</filtering>
+                                            <directory>${project.basedir}/../frontend/build</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>default-resources</id>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/resources</directory>
+                                            <filtering>true</filtering>
+                                            <excludes>
+                                                <exclude>static/fonts/**</exclude>
+                                            </excludes>
+                                        </resource>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/resources</directory>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>static/fonts/**</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

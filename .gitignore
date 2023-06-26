@@ -35,3 +35,7 @@ build/
 *.cmd
 .mvn/
 mvnw
+
+### Front ###
+frontend/node/node
+frontend/node/npm
