@@ -19,5 +19,5 @@ module.exports = {
     stubs: resolve(define.src, 'stubs'),
     hooks: resolve(define.src, 'hooks')
   },
-  extensions: ['.ts', '.tsx', '.js', 'jsx']
+  extensions: ['.ts', '.tsx', '.js', '.jsx']
 };

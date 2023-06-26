@@ -8,3 +8,5 @@ node_modules
 # builds
 build
 *.zip
+
+.env

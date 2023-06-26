@@ -5,7 +5,8 @@ const config = {
     require('autoprefixer'),
     require('postcss-nested'),
     require('postcss-modules')({
-      generateScopedName: '[local]___[hash:base64:5]'
+      generateScopedName: '[local]___[hash:base64:5]',
+      globalModulePaths: [/(node_modules)/]
     })
   ]
 };
