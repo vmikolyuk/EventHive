@@ -10,9 +10,9 @@ export type AppState = {app: State};
 
 export default function configureAppStore (preloadedState: RootState) {
   const store = configureStore({
-    reducer: root,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(createLogger()),
-    preloadedState
+    preloadedState,
+    reducer: root
   });
 
   if (isDevelopmentMode() && module.hot) {

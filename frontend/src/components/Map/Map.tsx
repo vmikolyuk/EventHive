@@ -1,10 +1,10 @@
 // @ts-ignore
 import './Map.css';
-import React, {FC, useEffect, useRef, useState} from 'react';
-import styles from './Map.css.json';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import maplibreGl, {Map as MapType} from 'maplibre-gl';
 import MapboxLanguage from '@mapbox/mapbox-gl-language';
+import styles from './Map.css.json';
 
 const Map: FC = () => {
   const mapContainer = useRef(null);
@@ -19,9 +19,9 @@ const Map: FC = () => {
     }
 
     map.current = new maplibreGl.Map({
+      center: [lng, lat], // starting position [lng, lat]
       container: mapContainer.current!,
       style: `https://api.maptiler.com/maps/6d0d88cc-ed1b-4caa-86ef-bab2261c4cc1/style.json?key=${process.env.ACCESS_TOKEN_FOR_MAP}`,
-      center: [lng, lat], // starting position [lng, lat]
       zoom // starting zoom
     });
 
