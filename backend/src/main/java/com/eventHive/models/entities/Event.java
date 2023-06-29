@@ -1,8 +1,15 @@
 package com.eventHive.models.entities;
 
-import jakarta.persistence.*;
-
 import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 /**
  * @author vmikolyuk
@@ -10,14 +17,17 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "tbl_events")
-public class Event {
+public class Event
+{
     @Id
     @GeneratedValue
     private Long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date creationDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date startDate;
 
@@ -30,73 +40,89 @@ public class Event {
     @Column(nullable = false)
     private Integer countMembers;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private EventType type;
 
     @ManyToOne(optional = false)
     private Location location;
 
-    public Integer getCountMembers() {
+    public Integer getCountMembers()
+    {
         return countMembers;
     }
 
-    public Date getCreationDate() {
+    public Date getCreationDate()
+    {
         return creationDate;
     }
 
-    public Long getDuration() {
+    public Long getDuration()
+    {
         return duration;
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public Location getLocation() {
+    public Location getLocation()
+    {
         return location;
     }
 
-    public Date getStartDate() {
+    public Date getStartDate()
+    {
         return startDate;
     }
 
-    public Integer getTotalMembers() {
+    public Integer getTotalMembers()
+    {
         return totalMembers;
     }
 
-    public EventType getType() {
+    public EventType getType()
+    {
         return type;
     }
 
-    public void setCountMembers(Integer countMembers) {
+    public void setCountMembers(Integer countMembers)
+    {
         this.countMembers = countMembers;
     }
 
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Date creationDate)
+    {
         this.creationDate = creationDate;
     }
 
-    public void setDuration(Long duration) {
+    public void setDuration(Long duration)
+    {
         this.duration = duration;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Location location)
+    {
         this.location = location;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Date startDate)
+    {
         this.startDate = startDate;
     }
 
-    public void setTotalMembers(Integer totalMembers) {
+    public void setTotalMembers(Integer totalMembers)
+    {
         this.totalMembers = totalMembers;
     }
 
-    public void setType(EventType type) {
+    public void setType(EventType type)
+    {
         this.type = type;
     }
 }

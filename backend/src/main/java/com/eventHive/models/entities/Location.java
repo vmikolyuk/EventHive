@@ -1,6 +1,10 @@
 package com.eventHive.models.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @author vmikolyuk
@@ -8,7 +12,8 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "tbl_locations")
-public class Location {
+public class Location
+{
     @Id
     @GeneratedValue
     private Long id;
@@ -16,29 +21,62 @@ public class Location {
     @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private Float latitude;
 
-    @Column
+    @Column(nullable = false)
     private Float longitude;
 
     @Column
-    private Float address;
+    private String address;
 
+    public String getAddress()
+    {
+        return address;
+    }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public String getTitle() {
+    public Float getLatitude()
+    {
+        return latitude;
+    }
+
+    public Float getLongitude()
+    {
+        return longitude;
+    }
+
+    public String getTitle()
+    {
         return title;
     }
 
-    public void setId(Long id) {
+    public void setAddress(String address)
+    {
+        this.address = address;
+    }
+
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public void setTitle(String title) {
+    public void setLatitude(Float latitude)
+    {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(Float longitude)
+    {
+        this.longitude = longitude;
+    }
+
+    public void setTitle(String title)
+    {
         this.title = title;
     }
 
