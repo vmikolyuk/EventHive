@@ -1,6 +1,4 @@
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
   moduleDirectories: [
     'node_modules',
     'src'
@@ -12,12 +10,14 @@ module.exports = {
     'tsx'
   ],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__tests__/__mocks__/fileMock.js',
-    '\\.(css|less)$': 'identity-obj-proxy'
+    '\\.(css|less)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__tests__/__mocks__/fileMock.js'
   },
+  preset: 'ts-jest',
   setupFiles: [
     '<rootDir>/jest-setup.ts'
   ],
+  testEnvironment: 'jsdom',
   testPathIgnorePatterns: [
     '/build/',
     '/node_modules/',

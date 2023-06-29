@@ -19,8 +19,8 @@ const plugins = [
     template: './src/index.html'
   }),
   new EnvironmentPlugin({
-    NODE_ENV: 'production',
-    NEED_STUB: false
+    NEED_STUB: false,
+    NODE_ENV: 'production'
   }),
   new Dotenv()
 

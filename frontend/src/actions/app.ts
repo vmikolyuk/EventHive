@@ -1,4 +1,3 @@
-
 import {createAsyncThunk} from '@reduxjs/toolkit';
 
 const initializeApp = createAsyncThunk<{}, {}, {rejectValue: {error: string}}>(
