@@ -1,6 +1,7 @@
-import {Box, Input, InputGroup, InputRightElement, List, ListItem} from '@chakra-ui/react';
+import {Box, Input, InputGroup, InputLeftElement, InputRightElement, List, ListItem} from '@chakra-ui/react';
 import React, {useState} from 'react';
 import {FiSearch} from 'react-icons/fi';
+import {TfiLocationPin} from 'react-icons/tfi';
 
 const SearchInput = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,9 +25,9 @@ const SearchInput = () => {
   return (
     <Box position="relative">
       <InputGroup>
-        <InputRightElement pointerEvents="none">
-          <FiSearch color="gray.300" />
-        </InputRightElement>
+        <InputLeftElement pointerEvents="none">
+          <TfiLocationPin color="gray.300" />
+        </InputLeftElement>
         <Input
           placeholder="Поиск"
           type="text"
@@ -34,6 +35,9 @@ const SearchInput = () => {
           onBlur={handleInputBlur}
           onChange={handleInputChange}
         />
+        <InputRightElement pointerEvents="none">
+          <FiSearch color="gray.300" />
+        </InputRightElement>
       </InputGroup>
       {showDropDown && (
         <List
@@ -44,11 +48,13 @@ const SearchInput = () => {
           position="absolute"
           right={0}
           top="100%"
+          zIndex={2}
         >
           {searchResults.map((result) => (
             <ListItem
               key={result}
-              p={2}>
+              p={2}
+            >
               {result}
             </ListItem>
           ))}
