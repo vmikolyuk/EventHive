@@ -4,6 +4,7 @@ import React from 'react';
 const AuthCard = () => {
   return (
     <Card
+      backgroundImage="url('/images/kyuubi.png')"
       direction={{base: 'column', sm: 'row'}}
       mt={25}
       overflow='hidden'

@@ -2,4 +2,7 @@
 
 ## TODO
 
-Add env file
+Fix fonts
+Fix animations in Sidebar
+Add skeleton
+Add ErrorAlert
