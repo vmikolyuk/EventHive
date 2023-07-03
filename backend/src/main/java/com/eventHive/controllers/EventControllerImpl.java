@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eventHive.models.entities.Event;
+import com.eventHive.models.entities.User;
 import com.eventHive.services.EventService;
+import com.eventHive.services.UserService;
 
 /**
  * @author vmikolyuk
@@ -22,11 +24,13 @@ import com.eventHive.services.EventService;
 public class EventControllerImpl implements EventController
 {
     private final EventService eventService;
+    private final UserService userService;
 
     @Autowired
-    public EventControllerImpl(EventService eventService)
+    public EventControllerImpl(EventService eventService, UserService userService)
     {
         this.eventService = eventService;
+        this.userService = userService;
     }
 
     @Override
@@ -46,5 +50,12 @@ public class EventControllerImpl implements EventController
     public ResponseEntity<List<Event>> getActive()
     {
         return ResponseEntity.ok(eventService.getActive());
+    }
+
+    @Override
+    @GetMapping("/{id}/users")
+    public ResponseEntity<List<User>> getUsers(@PathVariable final Long id)
+    {
+        return ResponseEntity.ok(userService.getByEventId(id));
     }
 }

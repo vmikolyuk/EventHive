@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.eventHive.models.entities.Event;
+import com.eventHive.models.entities.User;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -19,4 +20,6 @@ public interface EventController
     ResponseEntity<Event> getById(Long id);
 
     ResponseEntity<List<Event>> getActive();
+
+    ResponseEntity<List<User>> getUsers(Long id);
 }

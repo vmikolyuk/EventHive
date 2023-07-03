@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.eventHive.models.entities.Event;
+import com.eventHive.models.entities.EventUser;
 import com.eventHive.models.entities.Location;
+import com.eventHive.models.entities.User;
 import com.eventHive.repositories.EventRepository;
+import com.eventHive.repositories.EventUserRepository;
 import com.eventHive.repositories.LocationRepository;
+import com.eventHive.repositories.UserRepository;
 
 @SpringBootTest
 class EventHiveApplicationTests
@@ -22,16 +26,19 @@ class EventHiveApplicationTests
     @Autowired
     private EventRepository eventRepository;
 
-    @Test
-    void createLocations()
-    {
-        createLocation();
-    }
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private EventUserRepository eventUserRepository;
 
     @Test
-    void createEvents()
+    void created()
     {
+        createLocation();
         createEvent();
+        createUser();
+        createEventUser();
     }
 
     private Location createLocation()
@@ -57,5 +64,25 @@ class EventHiveApplicationTests
         event.setTotalMembers(memberCount + RandomUtils.nextInt());
         eventRepository.save(event);
         return event;
+    }
+
+    private User createUser()
+    {
+        User user = new User();
+        user.setFullName(RandomStringUtils.randomAlphabetic(10));
+        user.setPhoneNumber(RandomStringUtils.randomNumeric(11));
+        user.setAvatarPath(RandomStringUtils.randomAlphabetic(100));
+        userRepository.save(user);
+        return user;
+    }
+
+    private EventUser createEventUser()
+    {
+        EventUser eventUser = new EventUser();
+        eventUser.setEvent(createEvent());
+        eventUser.setUser(createUser());
+        eventUser.setMemberCount(RandomUtils.nextInt());
+        eventUserRepository.save(eventUser);
+        return eventUser;
     }
 }

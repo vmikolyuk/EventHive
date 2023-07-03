@@ -1,6 +1,9 @@
 package com.eventHive.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import com.eventHive.models.entities.User;
 
@@ -8,6 +11,8 @@ import com.eventHive.models.entities.User;
  * @author vmikolyuk
  * @since 22.06.2023
  */
-public interface UserRepository extends JpaRepository<User, Long>
+public interface UserRepository extends CrudRepository<User, Long>
 {
+    @Query("SELECT user FROM EventUser WHERE event.id = :eventId")
+    List<User> findByEventId(Long eventId);
 }

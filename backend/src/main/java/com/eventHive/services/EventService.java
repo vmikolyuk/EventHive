@@ -36,6 +36,6 @@ public class EventService
 
     public List<Event> getActive()
     {
-        return eventRepository.getActiveEvents(new Date());
+        return eventRepository.findActiveEvents(new Date());
     }
 }
