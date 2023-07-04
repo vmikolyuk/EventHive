@@ -1,4 +1,4 @@
-package com.eventHive.models.entities;
+package com.eventHive.entities;
 
 import java.util.Date;
 
@@ -40,9 +40,6 @@ public class Event
     @Column(nullable = false)
     private Integer countMembers;
 
-    @ManyToOne
-    private EventType type;
-
     @ManyToOne(optional = false)
     private Location location;
 
@@ -81,11 +78,6 @@ public class Event
         return totalMembers;
     }
 
-    public EventType getType()
-    {
-        return type;
-    }
-
     public void setCountMembers(Integer countMembers)
     {
         this.countMembers = countMembers;
@@ -119,10 +111,5 @@ public class Event
     public void setTotalMembers(Integer totalMembers)
     {
         this.totalMembers = totalMembers;
-    }
-
-    public void setType(EventType type)
-    {
-        this.type = type;
     }
 }

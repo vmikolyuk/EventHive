@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.eventHive.models.entities.Event;
+import com.eventHive.entities.Event;
 
 /**
  * @author vmikolyuk

@@ -2,7 +2,7 @@ package com.eventHive.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.eventHive.models.entities.EventUser;
+import com.eventHive.entities.EventUser;
 
 /**
  * @author vmikolyuk

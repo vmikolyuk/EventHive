@@ -1,4 +1,4 @@
-package com.eventHive.models.entities;
+package com.eventHive.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.eventHive.models.entities.Event;
+import com.eventHive.entities.Event;
 import com.eventHive.repositories.EventRepository;
 
 /**
@@ -37,5 +37,10 @@ public class EventService
     public List<Event> getActive()
     {
         return eventRepository.findActiveEvents(new Date());
+    }
+
+    public Long create(Event event)
+    {
+        return eventRepository.save(event).getId();
     }
 }

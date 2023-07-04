@@ -27,4 +27,9 @@ public class Exception
     {
         return new Exception(e.getMessage());
     }
+
+    public static Exception create(String message)
+    {
+        return new Exception(message);
+    }
 }

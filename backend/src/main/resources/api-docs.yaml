@@ -3,28 +3,996 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost:8080
-  description: Generated server url
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Location
+    description: Работа с локациями
+  - name: Event
+    description: Работа с мероприятиями
+  - name: User
+    description: Работа с пользователями
 paths:
+  /eventUsers:
+    get:
+      tags:
+        - event-user-entity-controller
+      description: get-eventuser
+      operationId: getCollectionResource-eventuser-get_1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEventUser'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEventUser'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+        - event-user-entity-controller
+      description: create-eventuser
+      operationId: postCollectionResource-eventuser-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUserRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEventUser'
+  /eventUsers/{id}:
+    get:
+      tags:
+        - event-user-entity-controller
+      description: get-eventuser
+      operationId: getItemResource-eventuser-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEventUser'
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - event-user-entity-controller
+      description: update-eventuser
+      operationId: putItemResource-eventuser-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUserRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEventUser'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEventUser'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - event-user-entity-controller
+      description: delete-eventuser
+      operationId: deleteItemResource-eventuser-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - event-user-entity-controller
+      description: patch-eventuser
+      operationId: patchItemResource-eventuser-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventUserRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEventUser'
+        '204':
+          description: No Content
+  /eventUsers/{id}/event:
+    get:
+      tags:
+        - event-user-property-reference-controller
+      description: get-event-by-eventuser-Id
+      operationId: followPropertyReference-eventuser-get_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+            text/uri-list:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - event-user-property-reference-controller
+      description: update-event-by-eventuser-Id
+      operationId: createPropertyReference-eventuser-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - event-user-property-reference-controller
+      description: delete-event-by-eventuser-Id
+      operationId: deletePropertyReference-eventuser-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - event-user-property-reference-controller
+      description: patch-event-by-eventuser-Id
+      operationId: createPropertyReference-eventuser-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '204':
+          description: No Content
+  /eventUsers/{id}/event/{propertyId}:
+    get:
+      tags:
+        - event-user-property-reference-controller
+      description: get-event-by-eventuser-Id
+      operationId: followPropertyReference-eventuser-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - event-user-property-reference-controller
+      description: delete-event-by-eventuser-Id
+      operationId: deletePropertyReferenceId-eventuser-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+  /eventUsers/{id}/user:
+    get:
+      tags:
+        - event-user-property-reference-controller
+      description: get-user-by-eventuser-Id
+      operationId: followPropertyReference-eventuser-get_2_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelUser'
+            text/uri-list:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - event-user-property-reference-controller
+      description: update-user-by-eventuser-Id
+      operationId: createPropertyReference-eventuser-put_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelUser'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelUser'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - event-user-property-reference-controller
+      description: delete-user-by-eventuser-Id
+      operationId: deletePropertyReference-eventuser-delete_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - event-user-property-reference-controller
+      description: patch-user-by-eventuser-Id
+      operationId: createPropertyReference-eventuser-patch_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelUser'
+        '204':
+          description: No Content
+  /eventUsers/{id}/user/{propertyId}:
+    get:
+      tags:
+        - event-user-property-reference-controller
+      description: get-user-by-eventuser-Id
+      operationId: followPropertyReference-eventuser-get_2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelUser'
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - event-user-property-reference-controller
+      description: delete-user-by-eventuser-Id
+      operationId: deletePropertyReferenceId-eventuser-delete_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+  /events:
+    get:
+      tags:
+        - event-entity-controller
+      description: get-event
+      operationId: getCollectionResource-event-get_1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEvent'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEvent'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+        - event-entity-controller
+      description: create-event
+      operationId: postCollectionResource-event-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+  /events/search/findActiveEvents:
+    get:
+      tags:
+        - event-search-controller
+      operationId: executeSearch-event-get
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEvent'
+        '404':
+          description: Not Found
+  /events/search/findAllByLocationId:
+    get:
+      tags:
+        - event-search-controller
+      operationId: executeSearch-event-get_1
+      parameters:
+        - name: locationId
+          in: query
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelEvent'
+        '404':
+          description: Not Found
+  /events/{id}:
+    get:
+      tags:
+        - event-entity-controller
+      description: get-event
+      operationId: getItemResource-event-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - event-entity-controller
+      description: update-event
+      operationId: putItemResource-event-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - event-entity-controller
+      description: delete-event
+      operationId: deleteItemResource-event-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - event-entity-controller
+      description: patch-event
+      operationId: patchItemResource-event-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelEvent'
+        '204':
+          description: No Content
+  /events/{id}/location:
+    get:
+      tags:
+        - event-property-reference-controller
+      description: get-location-by-event-Id
+      operationId: followPropertyReference-event-get_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+            text/uri-list:
+              schema:
+                type: string
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - event-property-reference-controller
+      description: update-location-by-event-Id
+      operationId: createPropertyReference-event-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - event-property-reference-controller
+      description: delete-location-by-event-Id
+      operationId: deletePropertyReference-event-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - event-property-reference-controller
+      description: patch-location-by-event-Id
+      operationId: createPropertyReference-event-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          application/x-spring-data-compact+json:
+            schema:
+              $ref: '#/components/schemas/CollectionModelObject'
+          text/uri-list:
+            schema:
+              type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '204':
+          description: No Content
+  /events/{id}/location/{propertyId}:
+    get:
+      tags:
+        - event-property-reference-controller
+      description: get-location-by-event-Id
+      operationId: followPropertyReference-event-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - event-property-reference-controller
+      description: delete-location-by-event-Id
+      operationId: deletePropertyReferenceId-event-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: propertyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+  /locations:
+    get:
+      tags:
+        - location-entity-controller
+      description: get-location
+      operationId: getCollectionResource-location-get_1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelLocation'
+            application/x-spring-data-compact+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelLocation'
+            text/uri-list:
+              schema:
+                type: string
+    post:
+      tags:
+        - location-entity-controller
+      description: create-location
+      operationId: postCollectionResource-location-post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+  /locations/{id}:
+    get:
+      tags:
+        - location-entity-controller
+      description: get-location
+      operationId: getItemResource-location-get
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - location-entity-controller
+      description: update-location
+      operationId: putItemResource-location-put
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '201':
+          description: Created
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '204':
+          description: No Content
+    delete:
+      tags:
+        - location-entity-controller
+      description: delete-location
+      operationId: deleteItemResource-location-delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - location-entity-controller
+      description: patch-location
+      operationId: patchItemResource-location-patch
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelLocation'
+        '204':
+          description: No Content
   /profile:
     get:
       tags:
-      - profile-controller
+        - profile-controller
       operationId: listAllFormsOfMetadata_1
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/RepresentationModelObject'
+  /profile/eventUsers:
+    get:
+      tags:
+        - profile-controller
+      operationId: descriptor_1_1_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+  /profile/events:
+    get:
+      tags:
+        - profile-controller
+      operationId: descriptor_1_1_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
+  /profile/locations:
+    get:
+      tags:
+        - profile-controller
+      operationId: descriptor_1_1_3
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+            application/alps+json:
+              schema:
+                type: string
+            application/schema+json:
+              schema:
+                $ref: '#/components/schemas/JsonSchema'
   /profile/users:
     get:
       tags:
-      - profile-controller
-      operationId: descriptor_1_1_1
+        - profile-controller
+      operationId: descriptor_1_1_4
       responses:
-        "200":
+        '200':
           description: OK
           content:
             '*/*':
@@ -39,51 +1007,25 @@ paths:
   /users:
     get:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: get-user
       operationId: getCollectionResource-user-get_1
-      parameters:
-      - name: page
-        in: query
-        description: Zero-based page index (0..N)
-        required: false
-        schema:
-          minimum: 0
-          type: integer
-          default: 0
-      - name: size
-        in: query
-        description: The size of the page to be returned
-        required: false
-        schema:
-          minimum: 1
-          type: integer
-          default: 20
-      - name: sort
-        in: query
-        description: "Sorting criteria in the format: property,(asc|desc). Default\
-          \ sort order is ascending. Multiple sort criteria are supported."
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelUser'
+                $ref: '#/components/schemas/CollectionModelEntityModelUser'
             application/x-spring-data-compact+json:
               schema:
-                $ref: '#/components/schemas/PagedModelEntityModelUser'
+                $ref: '#/components/schemas/CollectionModelEntityModelUser'
             text/uri-list:
               schema:
                 type: string
     post:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: create-user
       operationId: postCollectionResource-user-post
       requestBody:
@@ -93,44 +1035,64 @@ paths:
               $ref: '#/components/schemas/UserRequestBody'
         required: true
       responses:
-        "201":
+        '201':
           description: Created
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/EntityModelUser'
+  /users/search/findByEventId:
+    get:
+      tags:
+        - user-search-controller
+      operationId: executeSearch-user-get
+      parameters:
+        - name: eventId
+          in: query
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelEntityModelUser'
+        '404':
+          description: Not Found
   /users/{id}:
     get:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: get-user
       operationId: getItemResource-user-get
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/EntityModelUser'
-        "404":
+        '404':
           description: Not Found
     put:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: update-user
       operationId: putItemResource-user-put
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -138,47 +1100,47 @@ paths:
               $ref: '#/components/schemas/UserRequestBody'
         required: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/EntityModelUser'
-        "201":
+        '201':
           description: Created
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/EntityModelUser'
-        "204":
+        '204':
           description: No Content
     delete:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: delete-user
       operationId: deleteItemResource-user-delete
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        "204":
+        '204':
           description: No Content
-        "404":
+        '404':
           description: Not Found
     patch:
       tags:
-      - user-entity-controller
+        - user-entity-controller
       description: patch-user
       operationId: patchItemResource-user-patch
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
           application/json:
@@ -186,16 +1148,234 @@ paths:
               $ref: '#/components/schemas/UserRequestBody'
         required: true
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/hal+json:
               schema:
                 $ref: '#/components/schemas/EntityModelUser'
-        "204":
+        '204':
           description: No Content
+  /rest/events:
+    post:
+      tags:
+        - Event
+      summary: Создать событие
+      operationId: create
+      parameters:
+        - name: event
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Event'
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                type: integer
+                format: int64
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/users/{id}:
+    get:
+      tags:
+        - User
+      summary: Получить пользователя
+      operationId: getById
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор пользователя
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/locations:
+    get:
+      tags:
+        - Location
+      summary: Получить список всех локаций
+      operationId: getAll
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/locations/{id}:
+    get:
+      tags:
+        - Location
+      summary: Получить локацию
+      operationId: getById_1
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор локации
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          description: Локация не найдена
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/locations/{id}/events:
+    get:
+      tags:
+        - Location
+      summary: Получить список всех событий локации
+      operationId: getEvents
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор локации
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/events/{id}:
+    get:
+      tags:
+        - Event
+      summary: Получить событие
+      operationId: getById_2
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор события
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: Событие не найдено
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/events/{id}/users:
+    get:
+      tags:
+        - Event
+      summary: Получить список участников события
+      operationId: getUsers
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор события
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
+  /rest/events/active:
+    get:
+      tags:
+        - Event
+      summary: Получить список активных событий
+      operationId: getActive
+      responses:
+        '200':
+          description: Успешно
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '500':
+          description: Internal Server Error
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Exception'
 components:
   schemas:
+    Exception:
+      type: object
+      properties:
+        message:
+          type: string
     AbstractJsonSchemaPropertyObject:
       type: object
       properties:
@@ -248,6 +1428,146 @@ components:
       properties:
         _links:
           $ref: '#/components/schemas/Links'
+    EntityModelEvent:
+      type: object
+      properties:
+        creationDate:
+          type: string
+          format: date-time
+        startDate:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int64
+        totalMembers:
+          type: integer
+          format: int32
+        countMembers:
+          type: integer
+          format: int32
+        _links:
+          $ref: '#/components/schemas/Links'
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        creationDate:
+          type: string
+          format: date-time
+        startDate:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int64
+        totalMembers:
+          type: integer
+          format: int32
+        countMembers:
+          type: integer
+          format: int32
+        type:
+          $ref: '#/components/schemas/EventType'
+        location:
+          $ref: '#/components/schemas/Location'
+    EventType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        address:
+          type: string
+    CollectionModelEntityModelEvent:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            events:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelEvent'
+        _links:
+          $ref: '#/components/schemas/Links'
+    EntityModelLocation:
+      type: object
+      properties:
+        title:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        address:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelObject:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            objects:
+              type: array
+              items:
+                type: object
+        _links:
+          $ref: '#/components/schemas/Links'
+    EntityModelEventUser:
+      type: object
+      properties:
+        memberCount:
+          type: integer
+          format: int32
+        _links:
+          $ref: '#/components/schemas/Links'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        fullName:
+          type: string
+        phoneNumber:
+          type: string
+        avatarPath:
+          type: string
+    CollectionModelEntityModelEventUser:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            eventUsers:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelEventUser'
+        _links:
+          $ref: '#/components/schemas/Links'
     EntityModelUser:
       type: object
       properties:
@@ -259,22 +1579,7 @@ components:
           type: string
         _links:
           $ref: '#/components/schemas/Links'
-    PageMetadata:
-      type: object
-      properties:
-        size:
-          type: integer
-          format: int64
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
-        number:
-          type: integer
-          format: int64
-    PagedModelEntityModelUser:
+    CollectionModelEntityModelUser:
       type: object
       properties:
         _embedded:
@@ -286,8 +1591,72 @@ components:
                 $ref: '#/components/schemas/EntityModelUser'
         _links:
           $ref: '#/components/schemas/Links'
-        page:
-          $ref: '#/components/schemas/PageMetadata'
+    CollectionModelEntityModelLocation:
+      type: object
+      properties:
+        _embedded:
+          type: object
+          properties:
+            locations:
+              type: array
+              items:
+                $ref: '#/components/schemas/EntityModelLocation'
+        _links:
+          $ref: '#/components/schemas/Links'
+    EventRequestBody:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        creationDate:
+          type: string
+          format: date-time
+        startDate:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int64
+        totalMembers:
+          type: integer
+          format: int32
+        countMembers:
+          type: integer
+          format: int32
+        type:
+          type: string
+        location:
+          type: string
+    EventUserRequestBody:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user:
+          type: string
+        event:
+          type: string
+        memberCount:
+          type: integer
+          format: int32
+    LocationRequestBody:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        address:
+          type: string
     UserRequestBody:
       type: object
       properties:

@@ -7,7 +7,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.eventHive.models.entities.Location;
+import com.eventHive.entities.Location;
 import com.eventHive.repositories.LocationRepository;
 
 /**

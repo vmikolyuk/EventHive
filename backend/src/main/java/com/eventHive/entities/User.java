@@ -1,6 +1,10 @@
-package com.eventHive.models.entities;
+package com.eventHive.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 /**
  * @author vmikolyuk
@@ -8,7 +12,8 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name = "tbl_users")
-public class User {
+public class User
+{
     @Id
     @GeneratedValue
     private Long id;
@@ -22,35 +27,43 @@ public class User {
     @Column
     private String avatarPath;
 
-    public String getAvatarPath() {
+    public String getAvatarPath()
+    {
         return avatarPath;
     }
 
-    public String getFullName() {
+    public String getFullName()
+    {
         return fullName;
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
-    public void setAvatarPath(String avatarPath) {
+    public void setAvatarPath(String avatarPath)
+    {
         this.avatarPath = avatarPath;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(String fullName)
+    {
         this.fullName = fullName;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 }

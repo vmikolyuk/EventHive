@@ -2,7 +2,7 @@ package com.eventHive.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.eventHive.models.entities.Location;
+import com.eventHive.entities.Location;
 
 /**
  * @author vmikolyuk

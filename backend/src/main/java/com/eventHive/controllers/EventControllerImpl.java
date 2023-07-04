@@ -3,16 +3,21 @@ package com.eventHive.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eventHive.models.entities.Event;
-import com.eventHive.models.entities.User;
+import com.eventHive.entities.Event;
+import com.eventHive.entities.Location;
+import com.eventHive.entities.User;
 import com.eventHive.services.EventService;
+import com.eventHive.services.LocationService;
 import com.eventHive.services.UserService;
 
 /**
@@ -20,16 +25,18 @@ import com.eventHive.services.UserService;
  * @since 23.06.2023
  */
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/rest/events")
 public class EventControllerImpl implements EventController
 {
     private final EventService eventService;
+    private final LocationService locationService;
     private final UserService userService;
 
     @Autowired
-    public EventControllerImpl(EventService eventService, UserService userService)
+    public EventControllerImpl(EventService eventService, LocationService locationService, UserService userService)
     {
         this.eventService = eventService;
+        this.locationService = locationService;
         this.userService = userService;
     }
 
@@ -40,7 +47,7 @@ public class EventControllerImpl implements EventController
         Event event = eventService.getById(id);
         if (event == null)
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            throw new ResourceNotFoundException(String.format("Событие с идентификатором '%s' не найдено", id));
         }
         return ResponseEntity.ok(eventService.getById(id));
     }
@@ -58,4 +65,20 @@ public class EventControllerImpl implements EventController
     {
         return ResponseEntity.ok(userService.getByEventId(id));
     }
+
+    @Override
+    @PostMapping
+    public ResponseEntity<Long> create(@RequestBody Event event)
+    {
+        Location location = event.getLocation();
+
+        if (location == null || locationService.getById(location.getId()) == null)
+        {
+            throw new ResourceNotFoundException("Локация не найдена");
+        }
+
+        Long eventId = eventService.create(event);
+        return ResponseEntity.status(HttpStatus.CREATED).body(eventId);
+    }
+
 }

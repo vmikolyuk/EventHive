@@ -3,15 +3,15 @@ package com.eventHive.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.eventHive.models.entities.Event;
-import com.eventHive.models.entities.Location;
+import com.eventHive.entities.Event;
+import com.eventHive.entities.Location;
 import com.eventHive.services.EventService;
 import com.eventHive.services.LocationService;
 
@@ -20,7 +20,7 @@ import com.eventHive.services.LocationService;
  * @since 23.06.2023
  */
 @RestController
-@RequestMapping("/locations")
+@RequestMapping("/rest/locations")
 public class LocationControllerImpl implements LocationController
 {
     private final LocationService locationService;
@@ -47,7 +47,7 @@ public class LocationControllerImpl implements LocationController
         Location location = locationService.getById(id);
         if (location == null)
         {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            throw new ResourceNotFoundException(String.format("Локация с идентификатором '%s' не найдена", id));
         }
         return ResponseEntity.ok(location);
     }

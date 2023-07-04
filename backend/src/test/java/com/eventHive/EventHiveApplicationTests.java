@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.eventHive.models.entities.Event;
-import com.eventHive.models.entities.EventUser;
-import com.eventHive.models.entities.Location;
-import com.eventHive.models.entities.User;
+import com.eventHive.entities.Event;
+import com.eventHive.entities.EventUser;
+import com.eventHive.entities.Location;
+import com.eventHive.entities.User;
 import com.eventHive.repositories.EventRepository;
 import com.eventHive.repositories.EventUserRepository;
 import com.eventHive.repositories.LocationRepository;
