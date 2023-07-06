@@ -2,18 +2,21 @@ import {
   ChakraProvider,
   CloseButton,
   Flex,
-  Heading,
+  // Heading,
   IconButton,
   Spacer,
-  useDisclosure
+  useDisclosure,
+  VStack
 } from '@chakra-ui/react';
 
 import React, {FC} from 'react';
 import Authentication from 'components/Authentication';
+import Events from 'components/Events';
 import {FiMenu} from 'react-icons/fi';
 import Map from 'components/Map';
-import SearchInput from 'components/SearchInput';
+// import SearchInput from 'components/SearchInput';
 import Sidebar from 'components/common/Sidebar';
+// import Location from 'components/Location';
 
 const App: FC = () => {
   const {isOpen, onClose, onOpen} = useDisclosure({defaultIsOpen: true});
@@ -43,20 +46,27 @@ const App: FC = () => {
         textColor='black'
       >
         <Sidebar isOpen={isOpen}>
-          <Sidebar.Content>
+          <Sidebar.Content bg='#f2f1f0'>
             <Sidebar.Header>
-              <Heading
+              {/* <Heading
                 as='h1'
                 fontSize='xl'
               >
               Улей мероприятий
-              </Heading>
+              </Heading> */}
               <Spacer/>
               <CloseButton onClick={onClose}/>
             </Sidebar.Header>
             <Sidebar.Body>
-              <SearchInput />
-              <Authentication />
+              <VStack
+                align="stretch"
+                spacing={3}
+              >
+                {/* <SearchInput /> */}
+                <Authentication />
+                <Events />
+                {/* <Location/> */}
+              </VStack>
             </Sidebar.Body>
           </Sidebar.Content>
         </Sidebar>

@@ -1,8 +1,8 @@
 import {Box, BoxProps, Flex, FlexProps, StackProps, VStack} from '@chakra-ui/react';
 import React, {ReactNode} from 'react';
 
-type SideBarType = { isOpen: boolean, props?: FlexProps, children: ReactNode}
-function Sidebar ({children, isOpen = false, props}: SideBarType) {
+type SideBarType = FlexProps & { isOpen: boolean, children: ReactNode}
+function Sidebar ({children, isOpen = false, ...props}: SideBarType) {
   const renderSidebar = () => {
     return isOpen
       ? (
@@ -21,8 +21,8 @@ function Sidebar ({children, isOpen = false, props}: SideBarType) {
   return renderSidebar();
 }
 
-type SideBarContentType = { props?: StackProps, children: ReactNode}
-const renderSidebarContent = ({children, props}: SideBarContentType) => {
+type SideBarContentType = StackProps & {children: ReactNode}
+const renderSidebarContent = ({children, ...props}: SideBarContentType) => {
   return (
     <VStack
       align='stretch'
@@ -38,8 +38,8 @@ const renderSidebarContent = ({children, props}: SideBarContentType) => {
   );
 };
 
-type SideBarHeaderType = { props?: FlexProps, children: ReactNode}
-const SidebarHeader = ({children, props}: SideBarHeaderType) => {
+type SideBarHeaderType = FlexProps & {children: ReactNode}
+const SidebarHeader = ({children, ...props}: SideBarHeaderType) => {
   return (
     <Flex
       align='center'
@@ -50,8 +50,8 @@ const SidebarHeader = ({children, props}: SideBarHeaderType) => {
   );
 };
 
-type SideBarBodyType = { props?: BoxProps, children: ReactNode}
-const SidebarBody = ({children, props}: SideBarBodyType) => {
+type SideBarBodyType = BoxProps & {children: ReactNode}
+const SidebarBody = ({children, ...props}: SideBarBodyType) => {
   return (
     <Box {...props}>
       {children}
