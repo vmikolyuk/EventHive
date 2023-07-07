@@ -41,32 +41,6 @@ public class EventControllerImpl implements EventController
     }
 
     @Override
-    @GetMapping("/{id}")
-    public ResponseEntity<Event> getById(@PathVariable final Long id)
-    {
-        Event event = eventService.getById(id);
-        if (event == null)
-        {
-            throw new ResourceNotFoundException(String.format("Событие с идентификатором '%s' не найдено", id));
-        }
-        return ResponseEntity.ok(eventService.getById(id));
-    }
-
-    @Override
-    @GetMapping("/active")
-    public ResponseEntity<List<Event>> getActive()
-    {
-        return ResponseEntity.ok(eventService.getActive());
-    }
-
-    @Override
-    @GetMapping("/{id}/users")
-    public ResponseEntity<List<User>> getUsers(@PathVariable final Long id)
-    {
-        return ResponseEntity.ok(userService.getByEventId(id));
-    }
-
-    @Override
     @PostMapping
     public ResponseEntity<Long> create(@RequestBody Event event)
     {
@@ -79,6 +53,32 @@ public class EventControllerImpl implements EventController
 
         Long eventId = eventService.create(event);
         return ResponseEntity.status(HttpStatus.CREATED).body(eventId);
+    }
+
+    @Override
+    @GetMapping("/active")
+    public ResponseEntity<List<Event>> getActive()
+    {
+        return ResponseEntity.ok(eventService.getActive());
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getById(@PathVariable final Long id)
+    {
+        Event event = eventService.getById(id);
+        if (event == null)
+        {
+            throw new ResourceNotFoundException(String.format("Событие с идентификатором '%s' не найдено", id));
+        }
+        return ResponseEntity.ok(eventService.getById(id));
+    }
+
+    @Override
+    @GetMapping("/{id}/users")
+    public ResponseEntity<List<User>> getUsers(@PathVariable final Long id)
+    {
+        return ResponseEntity.ok(userService.getByEventId(id));
     }
 
 }
