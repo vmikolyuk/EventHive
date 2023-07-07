@@ -23,13 +23,13 @@ public class UserService
         this.userRepository = userRepository;
     }
 
-    public User getById(Long id)
-    {
-        return userRepository.findById(id).orElse(null);
-    }
-
     public List<User> getByEventId(Long eventId)
     {
         return userRepository.findByEventId(eventId);
+    }
+
+    public User getById(Long id)
+    {
+        return userRepository.findById(id).orElse(null);
     }
 }

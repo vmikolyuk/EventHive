@@ -41,17 +41,6 @@ class EventHiveApplicationTests
         createEventUser();
     }
 
-    private Location createLocation()
-    {
-        Location location = new Location();
-        location.setTitle(RandomStringUtils.randomAlphabetic(10));
-        location.setAddress(RandomStringUtils.randomAlphabetic(200));
-        location.setLatitude(RandomUtils.nextFloat());
-        location.setLongitude(RandomUtils.nextFloat());
-        locationRepository.save(location);
-        return location;
-    }
-
     private Event createEvent()
     {
         int memberCount = RandomUtils.nextInt();
@@ -66,16 +55,6 @@ class EventHiveApplicationTests
         return event;
     }
 
-    private User createUser()
-    {
-        User user = new User();
-        user.setFullName(RandomStringUtils.randomAlphabetic(10));
-        user.setPhoneNumber(RandomStringUtils.randomNumeric(11));
-        user.setAvatarPath(RandomStringUtils.randomAlphabetic(100));
-        userRepository.save(user);
-        return user;
-    }
-
     private EventUser createEventUser()
     {
         EventUser eventUser = new EventUser();
@@ -84,5 +63,26 @@ class EventHiveApplicationTests
         eventUser.setMemberCount(RandomUtils.nextInt());
         eventUserRepository.save(eventUser);
         return eventUser;
+    }
+
+    private Location createLocation()
+    {
+        Location location = new Location();
+        location.setTitle(RandomStringUtils.randomAlphabetic(10));
+        location.setAddress(RandomStringUtils.randomAlphabetic(200));
+        location.setLatitude(RandomUtils.nextFloat());
+        location.setLongitude(RandomUtils.nextFloat());
+        locationRepository.save(location);
+        return location;
+    }
+
+    private User createUser()
+    {
+        User user = new User();
+        user.setFullName(RandomStringUtils.randomAlphabetic(10));
+        user.setPhoneNumber(RandomStringUtils.randomNumeric(11));
+        user.setAvatarPath(RandomStringUtils.randomAlphabetic(100));
+        userRepository.save(user);
+        return user;
     }
 }

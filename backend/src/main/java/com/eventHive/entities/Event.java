@@ -4,8 +4,6 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -17,16 +15,8 @@ import jakarta.persistence.TemporalType;
  */
 @Entity
 @Table(name = "tbl_events")
-public class Event
+public class Event extends AbstractEntity
 {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date creationDate;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private Date startDate;
@@ -48,19 +38,9 @@ public class Event
         return countMembers;
     }
 
-    public Date getCreationDate()
-    {
-        return creationDate;
-    }
-
     public Long getDuration()
     {
         return duration;
-    }
-
-    public Long getId()
-    {
-        return id;
     }
 
     public Location getLocation()
@@ -83,19 +63,9 @@ public class Event
         this.countMembers = countMembers;
     }
 
-    public void setCreationDate(Date creationDate)
-    {
-        this.creationDate = creationDate;
-    }
-
     public void setDuration(Long duration)
     {
         this.duration = duration;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
     }
 
     public void setLocation(Location location)

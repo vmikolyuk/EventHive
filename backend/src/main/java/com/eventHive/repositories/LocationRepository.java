@@ -1,13 +1,11 @@
 package com.eventHive.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.eventHive.entities.Location;
 
 /**
  * @author vmikolyuk
  * @since 22.06.2023
  */
-public interface LocationRepository extends CrudRepository<Location, Long>
+public interface LocationRepository extends AbstractCrudRepository<Location>
 {
 }

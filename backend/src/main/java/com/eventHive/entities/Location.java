@@ -2,8 +2,6 @@ package com.eventHive.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
@@ -12,12 +10,8 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_locations")
-public class Location
+public class Location extends AbstractEntity
 {
-    @Id
-    @GeneratedValue
-    private Long id;
-
     @Column(nullable = false)
     private String title;
 
@@ -27,17 +21,20 @@ public class Location
     @Column(nullable = false)
     private Float longitude;
 
-    @Column
+    @Column(nullable = false)
     private String address;
+
+    @Column
+    private String imagePath;
 
     public String getAddress()
     {
         return address;
     }
 
-    public Long getId()
+    public String getImagePath()
     {
-        return id;
+        return imagePath;
     }
 
     public Float getLatitude()
@@ -60,9 +57,9 @@ public class Location
         this.address = address;
     }
 
-    public void setId(Long id)
+    public void setImagePath(String imagePath)
     {
-        this.id = id;
+        this.imagePath = imagePath;
     }
 
     public void setLatitude(Float latitude)

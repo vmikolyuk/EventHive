@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 import com.eventHive.entities.Event;
 
@@ -12,7 +11,7 @@ import com.eventHive.entities.Event;
  * @author vmikolyuk
  * @since 29.06.2023
  */
-public interface EventRepository extends CrudRepository<Event, Long>
+public interface EventRepository extends AbstractCrudRepository<Event>
 {
     //List<Event> findAllByLocationIdIn(List<Long> locationIds);
 

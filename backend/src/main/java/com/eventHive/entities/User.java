@@ -2,8 +2,6 @@ package com.eventHive.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
@@ -12,12 +10,8 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "tbl_users")
-public class User
+public class User extends AbstractEntity
 {
-    @Id
-    @GeneratedValue
-    private Long id;
-
     @Column(nullable = false)
     private String fullName;
 
@@ -37,11 +31,6 @@ public class User
         return fullName;
     }
 
-    public Long getId()
-    {
-        return id;
-    }
-
     public String getPhoneNumber()
     {
         return phoneNumber;
@@ -55,11 +44,6 @@ public class User
     public void setFullName(String fullName)
     {
         this.fullName = fullName;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
     }
 
     public void setPhoneNumber(String phoneNumber)

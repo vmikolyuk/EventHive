@@ -1,27 +1,18 @@
 package com.eventHive.entities;
 
-import javax.xml.crypto.Data;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /**
  * @author vmikolyuk
  * @since 07.07.2023
  */
 @Entity
-public class Comment
+@Table(name = "tbl_comments")
+public class Comment extends AbstractEntity
 {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(nullable = false)
-    private Data creationDate;
-
     @Column(length = 1000, nullable = false)
     private String text;
 
@@ -31,19 +22,9 @@ public class Comment
     @ManyToOne(optional = false)
     private Event event;
 
-    public Data getCreationDate()
-    {
-        return creationDate;
-    }
-
     public Event getEvent()
     {
         return event;
-    }
-
-    public Long getId()
-    {
-        return id;
     }
 
     public String getText()
@@ -56,19 +37,9 @@ public class Comment
         return user;
     }
 
-    public void setCreationDate(Data creationDate)
-    {
-        this.creationDate = creationDate;
-    }
-
     public void setEvent(Event event)
     {
         this.event = event;
-    }
-
-    public void setId(Long id)
-    {
-        this.id = id;
     }
 
     public void setText(String text)

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.eventHive.entities.Comment;
 import com.eventHive.entities.Event;
 import com.eventHive.entities.User;
 
@@ -22,6 +23,20 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Event", description = "Работа с событиями")
 public interface EventController
 {
+    /**
+     * Создать событие
+     * @param event событие
+     * @return идентификатор события
+     */
+    @Operation(summary = "Создать событие")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Успешно создано"),
+            @ApiResponse(responseCode = "404", description = "Локация не найдена",
+                    content = @Content(schema = @Schema(implementation = Exception.class))),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
+    })
+    ResponseEntity<Long> create(@Parameter(description = "Событие") Event event);
+
     /**
      * Получить список активных событий
      *
@@ -50,6 +65,19 @@ public interface EventController
     ResponseEntity<Event> getById(@Parameter(description = "Идентификатор события") Long id);
 
     /**
+     * Получить список комментариев события
+     *
+     * @param id идентификатор события
+     * @return список комментариев события
+     */
+    @Operation(summary = "Получить список комментариев события")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Успешно"),
+            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
+    })
+    ResponseEntity<List<Comment>> getComments(@Parameter(description = "Идентификатор события") Long id);
+
+    /**
      * Получить список участников события
      *
      * @param id идентификатор события
@@ -61,18 +89,4 @@ public interface EventController
             @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
     })
     ResponseEntity<List<User>> getUsers(@Parameter(description = "Идентификатор события") Long id);
-
-    /**
-     * Создать событие
-     * @param event событие
-     * @return идентификатор события
-     */
-    @Operation(summary = "Создать событие")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Успешно создано"),
-            @ApiResponse(responseCode = "404", description = "Локация не найдена",
-                    content = @Content(schema = @Schema(implementation = Exception.class))),
-            @ApiResponse(responseCode = "500", description = "Внутренняя ошибка сервера")
-    })
-    ResponseEntity<Long> create(@Parameter(description = "Событие") Event event);
 }

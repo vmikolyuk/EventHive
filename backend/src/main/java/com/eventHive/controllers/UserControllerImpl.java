@@ -19,7 +19,6 @@ import com.eventHive.services.UserService;
 @RequestMapping("/rest/users")
 public class UserControllerImpl implements UserController
 {
-
     private final UserService userService;
 
     @Autowired

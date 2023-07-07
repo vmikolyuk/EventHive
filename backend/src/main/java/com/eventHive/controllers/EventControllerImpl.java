@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.eventHive.entities.Comment;
 import com.eventHive.entities.Event;
 import com.eventHive.entities.Location;
 import com.eventHive.entities.User;
+import com.eventHive.services.CommentService;
 import com.eventHive.services.EventService;
 import com.eventHive.services.LocationService;
 import com.eventHive.services.UserService;
@@ -31,13 +33,16 @@ public class EventControllerImpl implements EventController
     private final EventService eventService;
     private final LocationService locationService;
     private final UserService userService;
+    private final CommentService commentService;
 
     @Autowired
-    public EventControllerImpl(EventService eventService, LocationService locationService, UserService userService)
+    public EventControllerImpl(EventService eventService, LocationService locationService, UserService userService,
+            CommentService commentService)
     {
         this.eventService = eventService;
         this.locationService = locationService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
     @Override
@@ -72,6 +77,13 @@ public class EventControllerImpl implements EventController
             throw new ResourceNotFoundException(String.format("Событие с идентификатором '%s' не найдено", id));
         }
         return ResponseEntity.ok(eventService.getById(id));
+    }
+
+    @Override
+    @GetMapping("/{id}/comments")
+    public ResponseEntity<List<Comment>> getComments(Long id)
+    {
+        return ResponseEntity.ok(commentService.getByEventId(id));
     }
 
     @Override
