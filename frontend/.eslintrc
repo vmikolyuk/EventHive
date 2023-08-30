@@ -77,7 +77,7 @@
     ],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-        "sort-imports": ["error", {
+    "sort-imports": ["error", {
         "ignoreCase": false,
         "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
